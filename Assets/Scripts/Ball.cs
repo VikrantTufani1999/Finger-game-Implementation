@@ -5,21 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class Ball : MonoBehaviour
 {
+    // [Ball-Related Declarations]
     private Rigidbody ball;
     public float BallSpeed;
     public float turnSpeen = 1;
     public float smoothTime;
-
-    //public GameObject Lose;
-    public GameObject gameOver;
     Vector3 vel;
+    public bool dragging = false;
 
+    // [Panel-Related Declaration]
+    public GameObject gameOver;
+    
+    // [Mouse-Position Related Declarations]
     private Vector3 mousepoint;
     private Vector3 screenPoint;
     private Vector3 offset;
     private float mZCoord;
-
-    public bool dragging = false;
 
     void Start()
     {
@@ -30,9 +31,14 @@ public class Ball : MonoBehaviour
     {
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         offset = gameObject.transform.position - GetMouseWorldPos();
+
+        if (Input.GetMouseButton(0))
+        {
+            ball.velocity = new Vector3(0, 0.001f, 0);
+        }
     }
 
-    private Vector3 GetMouseWorldPos()
+    private Vector3 GetMouseWorldPos()          // Get Mouse Position
     {
         mousepoint = Input.mousePosition;
 
@@ -44,28 +50,16 @@ public class Ball : MonoBehaviour
     void OnMouseDrag()
     {
         transform.position = GetMouseWorldPos() + offset;
-        //dragging = true;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(0))
         {
-            //dragging = true;
-            //ball.AddForce(new Vector3(0, 0.1f * Time.deltaTime, 0));
-            ball.velocity = new Vector3(0, 0.1f, 0);
+            SceneManager.LoadScene(0);
         }
 
-        else if (Input.GetMouseButtonUp(0))
-        {
-            //dragging = false;
-            SceneManager.LoadScene("SampleScene");
-        }
-
-        //if (dragging)
-        //{
-        //    transform.position = new Vector3(mousepoint.x, mousepoint.y, transform.position.z);
-        //}
+        // [To Apply The Sliding of LEFT OR RIGHT LOGIC]
 
         /*if (Input.GetAxis("Mouse X") > 0 )
         {
@@ -80,7 +74,7 @@ public class Ball : MonoBehaviour
             print("Mouse moved right");
         }*/
     }
-            
+
     void OnCollisionEnter(Collision col)
     {
         

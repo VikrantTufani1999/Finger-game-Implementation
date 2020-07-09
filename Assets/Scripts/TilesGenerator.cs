@@ -8,11 +8,12 @@ public class TilesGenerator : MonoBehaviour
     public GameObject Player;
     public GameObject[] Tiles;
     float spawnY;
+
     // Use this for initialization
     void Start()
     {
         mainCam = Camera.main;
-        spawnY = mainCam.transform.position.y + 3.0f;
+        spawnY = mainCam.transform.position.y + 10.0f;
     }
 
     // Update is called once per frame
@@ -37,7 +38,7 @@ public class TilesGenerator : MonoBehaviour
 
         if (mainCam.transform.position.y > spawnY)
         {
-            spawnY += Random.Range(3f, 10.5f);
+            spawnY += Random.Range(10f, 20f);
             float spawnX = Random.Range(-3f, 3f);
             SpawnTile(new Vector3(spawnX, spawnY));
         }

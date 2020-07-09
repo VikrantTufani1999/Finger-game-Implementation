@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FingerScript : MonoBehaviour
 {
-
+    /*
     // Set up a basic scene - just a camera with an orthographic view and a z distance of -10. Drag a background on to the scene if you like. Add 2 GameObjects with sprites to the scene. I have a bubble and a puffer fish so I named them "bubble" and "puffer". Add a RigidBody2D to both and set them to Kinematic. Add a 2D collider to both (I went with a circle colider) and make sure at least one of them has the trigger box checked.
 
     public Camera myCam;
@@ -78,4 +78,5 @@ public class FingerScript : MonoBehaviour
         float randomx = Random.Range(-6, 6);
         puffer.transform.position = new Vector3(randomx, 8, puffer.transform.position.z);
     }
+    */
 }
